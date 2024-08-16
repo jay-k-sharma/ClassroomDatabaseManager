@@ -1,0 +1,36 @@
+@model IEnumerable<ClassroomDatabaseManager.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h1>Students</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName @item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.DateOfBirth.ToShortDateString()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-warning">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
